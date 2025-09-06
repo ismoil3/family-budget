@@ -5,10 +5,14 @@ import { Input } from "@/shared/ui/input";
 import { Linkedin, Facebook, Twitter } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const t = useTranslations("footer");
-
+  const pathname = usePathname()
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
   return (
     <footer className="w-full ">
       <div style={{padding: "0px 0px 0px 0px"}} className="container ">

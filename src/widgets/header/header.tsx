@@ -26,6 +26,9 @@ export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
   const router = useRouter();
   const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
 
   function handleChangeSelect(locale: string) {
     Cookies.set("NEXT_LOCALE", locale);
@@ -42,19 +45,26 @@ export default function Header() {
     (lang) => lang.code === selectedLanguage
   );
 
+
+
   return (
     <>
-      <header className="w-full bg-background     container">
-        <div className="flex items-center justify-between">
+      <header className="w-full bg-background  sticky top-0">
+        <div className="flex items-center container justify-between">
           <div className="flex items-center gap-2">
-            <Image width={260} height={200} className="hidden md:block w-[150px] h-auto" src="/logo.png" alt="" />
+            <Image
+              width={260}
+              height={200}
+              className="hidden md:block w-[150px] h-auto"
+              src="/logo.png"
+              alt=""
+            />
             <Image
               className="block md:hidden w-[40px]"
               src="/mini-logo.png"
               alt="mini logo"
               width={40}
               height={40}
-
             />
           </div>
 
@@ -83,9 +93,7 @@ export default function Header() {
             <Link
               href="/contact"
               className={
-                pathname === "/contact"
-                  ? "text-blue-500 "
-                  : " hover:underline"
+                pathname === "/contact" ? "text-blue-500 " : " hover:underline"
               }
             >
               {t("links.contact")}
@@ -120,7 +128,6 @@ export default function Header() {
                         alt="flag"
                         width={20}
                         height={20}
-
                       />
                       <span>{language.name}</span>
                     </div>
@@ -203,7 +210,6 @@ export default function Header() {
                       alt="flag"
                       width={20}
                       height={20}
-
                     />
                     <span className="text-xs">
                       {currentLanguage?.code.toUpperCase()}
