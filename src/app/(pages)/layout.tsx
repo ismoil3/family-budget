@@ -5,6 +5,7 @@ import Header from "../../widgets/header/header";
 import Footer from "../../widgets/footer/footer";
 import { NextIntlClientProvider } from "next-intl"
 import { ThemeProvider } from "../providers/theme-provider";
+import { Toaster } from "@/shared/ui/sonner";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Toaster />
             <Header />
             {children}
             <Footer />
