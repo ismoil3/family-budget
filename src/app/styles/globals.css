@@ -116,7 +116,21 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 48px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 15px;
   }
 }

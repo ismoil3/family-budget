@@ -1,0 +1,33 @@
+{
+    "header": {
+        "links": {
+            "home": "Главная",
+            "about": "О нас",
+            "contact": "Контакты"
+        },
+        "btn-login": "Войти"
+    },
+    "footer": {
+        "nav": {
+            "aboutUs": "О нас",
+            "services": "Услуги",
+            "useCases": "Примеры использования",
+            "pricing": "Цены",
+            "blog": "Блог"
+        },
+        "contact": {
+            "title": "Свяжитесь с нами:",
+            "email": "Email: familybudget@gmail.com",
+            "phone": "Телефон: +992 10 77 90 777",
+            "address": "Адрес: Таджикистан Душанбе Айни 55"
+        },
+        "newsletter": {
+            "emailPlaceholder": "Email",
+            "subscribeButton": "Подписаться на новости"
+        },
+        "bottom": {
+            "copyright": "© 2025 FamilyBudget. Все права защищены.",
+            "privacyPolicy": "Политика конфиденциальности"
+        }
+    }
+}

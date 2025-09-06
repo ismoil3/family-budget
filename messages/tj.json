@@ -1,0 +1,33 @@
+{
+    "header": {
+        "links": {
+            "home": "Саҳифаи асосӣ",
+            "about": "Дар бораи мо",
+            "contact": "Тамос"
+        },
+        "btn-login": "Вуруд"
+    },
+    "footer": {
+        "nav": {
+            "aboutUs": "Дар бораи мо",
+            "services": "Хидматҳо",
+            "useCases": "Мисолҳои истифода",
+            "pricing": "Нархҳо",
+            "blog": "Блог"
+        },
+        "contact": {
+            "title": "Бо мо тамос гиред:",
+            "email": "Email: familybudget@gmail.com",
+            "phone": "Телефон: +992 10 77 90 777",
+            "address": "Суроға: Тоҷикистон Душанбе Айнӣ 55"
+        },
+        "newsletter": {
+            "emailPlaceholder": "Email",
+            "subscribeButton": "Обуна шудан ба ахборот"
+        },
+        "bottom": {
+            "copyright": "© 2025 FamilyBudget. Ҳамаи ҳуқуқҳо ҳифз шудаанд.",
+            "privacyPolicy": "Сиёсати махфият"
+        }
+    }
+}

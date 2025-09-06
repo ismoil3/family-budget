@@ -1,5 +1,12 @@
-export default function HomePage(){
-  return <>
-    <h1>Home Page</h1>
-  </> 
+import React from 'react'
+
+const HomePage = () => {
+  return (
+    <div className='container'>
+      HomePage
+    </div>
+  )
 }
+
+export default HomePage
+

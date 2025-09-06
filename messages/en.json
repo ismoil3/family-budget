@@ -1,0 +1,33 @@
+{
+    "header": {
+        "links": {
+            "home": "Home",
+            "about": "About us",
+            "contact": "Contact"
+        },
+        "btn-login": "Log in"
+    },
+    "footer": {
+        "nav": {
+            "aboutUs": "About us",
+            "services": "Services",
+            "useCases": "Use Cases",
+            "pricing": "Pricing",
+            "blog": "Blog"
+        },
+        "contact": {
+            "title": "Contact us:",
+            "email": "Email: familybudget@gmail.com",
+            "phone": "Phone: +992 10 77 90 777",
+            "address": "Address: Tajikistan Dushanbe Ayni 55"
+        },
+        "newsletter": {
+            "emailPlaceholder": "Email",
+            "subscribeButton": "Subscribe to news"
+        },
+        "bottom": {
+            "copyright": "© 2025 FamilyBudget. All Rights Reserved.",
+            "privacyPolicy": "Privacy Policy"
+        }
+    }
+}
