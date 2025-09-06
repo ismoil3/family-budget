@@ -1,33 +1,122 @@
 {
-    "header": {
-        "links": {
-            "home": "Home",
-            "about": "About us",
-            "contact": "Contact"
-        },
-        "btn-login": "Log in"
+  "header": {
+    "links": {
+      "home": "Home",
+      "about": "About us",
+      "contact": "Contact"
     },
-    "footer": {
-        "nav": {
-            "aboutUs": "About us",
-            "services": "Services",
-            "useCases": "Use Cases",
-            "pricing": "Pricing",
-            "blog": "Blog"
-        },
-        "contact": {
-            "title": "Contact us:",
-            "email": "Email: familybudget@gmail.com",
-            "phone": "Phone: +992 10 77 90 777",
-            "address": "Address: Tajikistan Dushanbe Ayni 55"
-        },
-        "newsletter": {
-            "emailPlaceholder": "Email",
-            "subscribeButton": "Subscribe to news"
-        },
-        "bottom": {
-            "copyright": "© 2025 FamilyBudget. All Rights Reserved.",
-            "privacyPolicy": "Privacy Policy"
-        }
+    "btn-login": "Log in"
+  },
+  "footer": {
+    "nav": {
+      "aboutUs": "About us",
+      "services": "Services",
+      "useCases": "Use Cases",
+      "pricing": "Pricing",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contact us:",
+      "email": "Email: familybudget@gmail.com",
+      "phone": "Phone: +992 10 77 90 777",
+      "address": "Address: Tajikistan Dushanbe Ayni 55"
+    },
+    "newsletter": {
+      "emailPlaceholder": "Email",
+      "subscribeButton": "Subscribe to news"
+    },
+    "bottom": {
+      "copyright": "© 2025 FamilyBudget. All Rights Reserved.",
+      "privacyPolicy": "Privacy Policy"
     }
+  },
+  "home": {
+    "hero": {
+      "badge": "New family app",
+      "title": "Manage your family budget",
+      "titleHighlight": "together",
+      "description": "Track expenses, plan goals and make financial decisions as a family. Simple app for joint money management.",
+      "cta": "Try for free"
+    },
+    "whyOnline": {
+      "title": "Why choose an online platform?",
+      "availability": {
+        "title": "24/7 Availability",
+        "description": "Manage your budget anytime and from anywhere. No time or location restrictions."
+      },
+      "sync": {
+        "title": "Instant synchronization",
+        "description": "All changes are instantly displayed to all family members. No delays or data loss."
+      },
+      "backup": {
+        "title": "Automatic backup",
+        "description": "Your data is automatically saved to the cloud. Never lose important financial information."
+      },
+      "analytics": {
+        "title": "Smart analytics",
+        "description": "Get personalized recommendations and forecasts based on your financial habits."
+      },
+      "traditional": "Traditional methods",
+      "vs": "vs",
+      "online": "Online Platform",
+      "paperRecords": "Paper records",
+      "outdated": "Outdated",
+      "digitalAccounting": "Digital accounting",
+      "modern": "Modern",
+      "manualCalculations": "Manual calculations",
+      "errors": "Errors",
+      "autoCalculations": "Automatic calculations",
+      "accuracy": "Accuracy",
+      "localStorage": "Local storage",
+      "riskOfLoss": "Risk of loss",
+      "cloudStorage": "Cloud storage",
+      "security": "Security"
+    },
+    "platform": {
+      "title": "FamilyBudget Platform"
+    },
+    "features": {
+      "badge": "FEATURES",
+      "title": "Everything for family budget",
+      "accessibility": {
+        "title": "Accessibility",
+        "description": "Our platform is completely free for all users, with no hidden fees or subscriptions"
+      },
+      "crossPlatform": {
+        "title": "Cross-platform",
+        "description": "Clear and simple pricing. Always know what you'll pay for."
+      },
+      "planning": {
+        "title": "Joint planning",
+        "description": "All family members can participate in budget planning and expense tracking"
+      },
+      "automation": {
+        "title": "Automation",
+        "description": "Automatic expense categorization and smart tips"
+      },
+      "smartAnalytics": {
+        "title": "Smart analytics",
+        "description": "Detailed reports and charts will help you understand where your money goes"
+      },
+      "familyGoals": {
+        "title": "Family goals",
+        "description": "Set common financial goals and track progress towards achieving them"
+      }
+    },
+    "history": {
+      "title": "Our story",
+      "description": "A hackathon brought us together. Before that day we were strangers, but energy and a common goal quickly made us a team. It was at that moment that the idea was born that became our product."
+    },
+    "team": {
+      "title": "Our team"
+    },
+    "reviews": {
+      "title": "Reviews"
+    },
+    "cta": {
+      "subtitle1": "Start managing your family",
+      "subtitle2": "budget today",
+      "button": "Try for free →"
+    }
+  }
 }
