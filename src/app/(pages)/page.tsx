@@ -20,7 +20,7 @@ const dataTeam = [
   },
   {
     name: {
-      en: "Ismoil Sufonйulzoda",
+      en: "Ismoil Sufonqulzoda",
       ru: "Исмоил Суфонкулзода",
       tj: "Исмоил Суфонкулзода",
     },
