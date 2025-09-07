@@ -1,7 +1,7 @@
 "use client";
 
 import { PulsatingButton } from "@/shared/magicui/pulsating-button";
-import { Badge } from "@/shared/ui/badge";
+import * as motion from "motion/react-client";
 import { Card, CardContent } from "@/shared/ui/card";
 import Reviews from "@/widgets/reviews/reviews";
 import {
@@ -15,8 +15,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ShinyButton } from "@/shared/magicui/shiny-button";
-import { AnimatedGradientText } from "@/shared/magicui/animated-gradient-text";
 import { MacbookScroll } from "@/shared/ui/macbook-scroll";
 import { useEffect, useState } from "react";
 import HeroSection from "@/widgets/hero/hero";
@@ -74,6 +72,24 @@ interface HomePageProps {
     locale: string;
   };
 }
+const container = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.4,
+    },
+  },
+};
+
+const fadeUpLeft = {
+  hidden: { opacity: 0, x: 50, y: 50 },
+  visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.8 } },
+};
+
+const fadeUpRight = {
+  hidden: { opacity: 0, x: -50, y: 50 },
+  visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.8 } },
+};
 
 const HomePage = ({ params: { locale } }: HomePageProps) => {
   const t = useTranslations("home");
@@ -83,7 +99,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
 
   return (
     <div className="container">
-     <HeroSection />
+      <HeroSection />
 
       {/* plus section */}
       <section className="py-16 md:py-24">
@@ -95,8 +111,13 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left  */}
-          <div className="space-y-8">
-            <div className="flex gap-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={container}
+            className="space-y-8"
+          >
+            <motion.div variants={fadeUpRight} className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-blue-600 dark:text-blue-400"
@@ -120,9 +141,9 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                   {t("whyOnline.availability.description")}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex gap-4">
+            <motion.div variants={fadeUpLeft} className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-blue-600 dark:text-blue-400"
@@ -146,9 +167,9 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                   {t("whyOnline.sync.description")}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex gap-4">
+            <motion.div variants={fadeUpRight} className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-blue-600 dark:text-blue-400"
@@ -172,9 +193,9 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                   {t("whyOnline.backup.description")}
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex gap-4">
+            <motion.div variants={fadeUpLeft} className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                 <svg
                   className="w-6 h-6 text-blue-600 dark:text-blue-400"
@@ -198,12 +219,16 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                   {t("whyOnline.analytics.description")}
                 </p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right*/}
           <div className="space-y-6">
-            <div className="text-center space-y-2">
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              className="text-center space-y-2"
+            >
               <h3 className="text-xl font-semibold text-foreground">
                 {t("whyOnline.traditional")}
               </h3>
@@ -211,10 +236,18 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
               <h3 className="text-xl font-semibold text-blue-600 dark:text-blue-400">
                 {t("whyOnline.online")}
               </h3>
-            </div>
+            </motion.div>
 
-            <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-2">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={container}
+              className="space-y-3"
+            >
+              <motion.div
+                variants={fadeUpLeft}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-red-700 dark:text-red-300">
                     {t("whyOnline.paperRecords")}
@@ -225,9 +258,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.outdated")}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <motion.div
+                variants={fadeUpRight}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-green-700 dark:text-green-300">
                     {t("whyOnline.digitalAccounting")}
@@ -238,9 +274,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.modern")}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <motion.div
+                variants={fadeUpLeft}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-red-700 dark:text-red-300">
                     {t("whyOnline.manualCalculations")}
@@ -251,9 +290,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.errors")}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <motion.div
+                variants={fadeUpRight}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-green-700 dark:text-green-300">
                     {t("whyOnline.autoCalculations")}
@@ -264,9 +306,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.accuracy")}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <motion.div
+                variants={fadeUpLeft}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-red-700 dark:text-red-300">
                     {t("whyOnline.localStorage")}
@@ -277,9 +322,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.riskOfLoss")}
                   </span>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-2 gap-2">
+              <motion.div
+                variants={fadeUpRight}
+                className="grid grid-cols-2 gap-2"
+              >
                 <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg px-4 py-3 text-center">
                   <span className="text-sm text-green-700 dark:text-green-300">
                     {t("whyOnline.cloudStorage")}
@@ -290,8 +338,8 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                     {t("whyOnline.security")}
                   </span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -324,89 +372,101 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Row 1 */}
-          <Card className="bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <Accessibility className="text-blue-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.accessibility.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.accessibility.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-pink-50 dark:bg-pink-900/20 cursor-pointer border-pink-200 dark:border-pink-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <Accessibility className="text-blue-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.accessibility.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.accessibility.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <CrosshairIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.crossPlatform.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.crossPlatform.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-green-50 dark:bg-green-900/20 cursor-pointer border-green-200 dark:border-green-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <CrosshairIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.crossPlatform.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.crossPlatform.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <PlaneTakeoffIcon className="text-blue-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.planning.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.planning.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-blue-50 dark:bg-blue-900/20 cursor-pointer border-blue-200 dark:border-blue-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <PlaneTakeoffIcon className="text-blue-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.planning.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.planning.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <LucideIndentDecrease className="text-blue-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.automation.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.automation.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-pink-50 dark:bg-pink-900/20 cursor-pointer border-pink-200 dark:border-pink-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <LucideIndentDecrease className="text-blue-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.automation.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.automation.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <MonitorSmartphone className="text-blue-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.smartAnalytics.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.smartAnalytics.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-green-50 dark:bg-green-900/20 cursor-pointer border-green-200 dark:border-green-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <MonitorSmartphone className="text-blue-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.smartAnalytics.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.smartAnalytics.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-            <CardContent className="p-8 text-center space-y-4">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <CheckCheck className="text-blue-500" />
-              </div>
-              <h3 className="text-lg font-semibold text-foreground">
-                {t("features.familyGoals.title")}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {t("features.familyGoals.description")}
-              </p>
-            </CardContent>
-          </Card>
+          <motion.div whileHover={{ scale: 1.043 }} whileTap={{ scale: 0.95 }}>
+            <Card className="bg-blue-50 dark:bg-blue-900/20 cursor-pointer border-blue-200 dark:border-blue-800">
+              <CardContent className="p-8 text-center space-y-4">
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
+                  <CheckCheck className="text-blue-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-foreground">
+                  {t("features.familyGoals.title")}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t("features.familyGoals.description")}
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
@@ -420,7 +480,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left */}
           <div className="space-y-6">
-            <p className="text-3xl caveat text-muted-foreground leading-relaxed italic font-handwriting">
+            <p className="text-3xl caveat  leading-relaxed caveat font-handwriting">
               {t("history.description")}
             </p>
           </div>

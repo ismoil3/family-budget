@@ -27,31 +27,31 @@ export default function Footer() {
             <nav className="flex flex-wrap gap-6 mb-4 md:mb-0">
               <Link
                 href="#"
-                className="text-white text-sm font-medium hover:text-gray-300 transition-colors underline"
+                className="text-white text-sm font-medium  transition-colors underline hover:font-bold hover:text-blue-500"
               >
                 {t("nav.aboutUs")}
               </Link>
               <Link
                 href="#"
-                className="text-white text-sm font-medium hover:text-gray-300 transition-colors underline"
+                className="text-white text-sm font-medium  transition-colors underline hover:font-bold hover:text-blue-500"
               >
                 {t("nav.services")}
               </Link>
               <Link
                 href="#"
-                className="text-white text-sm font-medium hover:text-gray-300 transition-colors underline"
+                className="text-white text-sm font-medium  transition-colors underline hover:font-bold hover:text-blue-500"
               >
                 {t("nav.useCases")}
               </Link>
               <Link
                 href="#"
-                className="text-white text-sm font-medium hover:text-gray-300 transition-colors underline"
+                className="text-white text-sm font-medium  transition-colors underline hover:font-bold hover:text-blue-500"
               >
                 {t("nav.pricing")}
               </Link>
               <Link
                 href="#"
-                className="text-white text-sm font-medium hover:text-gray-300 transition-colors underline"
+                className="text-white text-sm font-medium  transition-colors underline hover:font-bold hover:text-blue-500"
               >
                 {t("nav.blog")}
               </Link>
@@ -60,19 +60,19 @@ export default function Footer() {
             <div className="flex gap-3">
               <Link
                 href="#"
-                className="text-white hover:text-gray-300 transition-colors"
+                className="text-white  transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
-                className="text-white hover:text-gray-300 transition-colors"
+                className="text-white  transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
-                className="text-white hover:text-gray-300 transition-colors"
+                className="text-white  transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </Link>
@@ -113,7 +113,7 @@ export default function Footer() {
             </p>
             <Link
               href="#"
-              className="text-white text-sm hover:text-gray-300 transition-colors underline"
+              className="text-white text-sm  transition-colors underline hover:font-bold hover:text-blue-500"
             >
               {t("bottom.privacyPolicy")}
             </Link>
