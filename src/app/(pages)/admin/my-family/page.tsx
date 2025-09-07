@@ -88,7 +88,7 @@ export default function MyFamily() {
               <TableCell className="font-medium ">{invoice.status}</TableCell>
               <TableCell className="font-medium ">
                 {invoice.registeredDate}
-              </Table   Cell>
+              </TableCell>
                <TableCell> 
                   <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
                     <Edit />
