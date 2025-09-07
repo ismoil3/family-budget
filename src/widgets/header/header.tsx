@@ -58,7 +58,7 @@ export default function Header() {
                 width={40}
                 height={40}
               />
-              <p className="hidden caveat md:block text-2xl">FamilyBudget</p>
+              <p className="hidden caveat md:block text-2xl font-caveat-sans">FamilyBudget</p>
             </div>
           </Link>
 
