@@ -6,7 +6,6 @@ import { Card, CardContent } from "@/shared/ui/card";
 import Reviews from "@/widgets/reviews/reviews";
 import {
   Accessibility,
-  ArrowRight,
   CheckCheck,
   CrosshairIcon,
   LucideIndentDecrease,
@@ -18,6 +17,7 @@ import { useTranslations } from "next-intl";
 import { MacbookScroll } from "@/shared/ui/macbook-scroll";
 import { useEffect, useState } from "react";
 import HeroSection from "@/widgets/hero/hero";
+import { useRouter } from "next/navigation";
 
 const dataTeam = [
   {
@@ -95,13 +95,18 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
   const t = useTranslations("home");
   const [isClient, setIsClient] = useState(false);
 
+  const router = useRouter()
   useEffect(() => setIsClient(true), []);
 
   return (
     <div className="container">
       <HeroSection />
 
-      {/* plus section */}
+      {/* <p>
+      <p classname="red">
+        text text
+      </p>
+    </p> */}
       <section className="py-16 md:py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -110,7 +115,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left  */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -168,6 +172,8 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                 </p>
               </div>
             </motion.div>
+            {/* <div onClick={() => {console.log("test")}}>
+            </div> */}
 
             <motion.div variants={fadeUpRight} className="flex gap-4">
               <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
@@ -222,7 +228,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
             </motion.div>
           </motion.div>
 
-          {/* Right*/}
           <div className="space-y-6">
             <motion.div
               initial={{ scale: 0 }}
@@ -344,7 +349,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         </div>
       </section>
 
-      {/* our  platform */}
       <section className="w-full overflow-hidden" suppressHydrationWarning>
         {isClient ? (
           <MacbookScroll
@@ -362,7 +366,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         ) : null}
       </section>
 
-      {/* feauters platform */}
       <section className="py-16 md:py-24">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -470,7 +473,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         </div>
       </section>
 
-      {/* history */}
       <section id="about">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -478,14 +480,12 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           </h2>
         </div>
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
           <div className="space-y-6">
             <p className="text-3xl caveat  leading-relaxed caveat font-handwriting">
               {t("history.description")}
             </p>
           </div>
 
-          {/* Right */}
           <div className="relative max-w-[600px] max-h-[300px] w-full h-full">
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl w-full h-full text-center">
               <div className="flex transform rotate-330 absolute bg-white dark:bg-gray-800 rounded border border-blue-500 dark:border-blue-400 text-xs px-3 py-1 top-0 -left-10 items-center justify-center gap-2">
@@ -516,7 +516,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         </div>
       </section>
 
-      {/* our team */}
       <section className="py-12 md:py-14">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -574,7 +573,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
         </div>
       </section>
 
-      {/* Reviews */}
       <section>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
@@ -586,7 +584,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
 
       <div className="flex flex-col items-center justify-center min-h-screen px-4 py-8">
         <div className="text-center space-y-4 md:space-y-6 lg:space-y-8 max-w-6xl mx-auto">
-          {/* Logo and Title */}
           <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8">
             <img
               src="/mini-logoo.png"
@@ -598,7 +595,6 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
             </h1>
           </div>
 
-          {/* Subtitle */}
           <div className="space-y-1 sm:space-y-2">
             <p className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl caveat text-foreground font-light italic leading-relaxed px-2">
               {t("cta.subtitle1")}
@@ -608,9 +604,9 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
             </p>
           </div>
 
-          {/* CTA Button */}
-          <div className="pt-2 md:pt-4">
+          <div onClick={() => router.push("/login")} className="pt-2 md:pt-4">
             <PulsatingButton
+            
               pulseColor="#bfdbfe"
               className="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white mx-auto px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-3 text-sm sm:text-base md:text-lg rounded-lg font-medium transition-all duration-200"
             >

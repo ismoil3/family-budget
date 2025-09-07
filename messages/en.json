@@ -4,7 +4,8 @@
       "home": "Home",
       "about": "About us",
       "contact": "Contact",
-      "reviews": "Reviews"
+      "reviews": "Reviews",
+      "contacts": "Contacts"
     },
     "btn-login": "Log in"
   },
@@ -37,7 +38,7 @@
       "title": "Manage your family budget",
       "titleHighlight": "together",
       "description": "Track expenses, plan goals and make financial decisions as a family. Simple app for joint money management.",
-      "cta": "Try for free"
+      "cta": "Get started"
     },
     "whyOnline": {
       "title": "Why choose an online platform?",
@@ -117,7 +118,7 @@
     "cta": {
       "subtitle1": "Start managing your family",
       "subtitle2": "budget today",
-      "button": "Try for free →"
+      "button": "Get started →"
     }
   }
 }

@@ -52,19 +52,21 @@ export default function Header() {
         <div className="flex items-center container justify-between">
           <Link href="/">
             <div className="flex items-center gap-2">
-              <Image
-                src="/mini-logo.png"
-                alt="mini logo"
-                width={40}
-                height={40}
-              />
-              <p className="hidden caveat md:block text-2xl font-caveat-sans">FamilyBudget</p>
+              <Image src="/logo.svg" alt="mini logo" width={40} height={40} />
+              <p className="hidden caveat md:block text-2xl font-caveat-sans">
+                FamilyBudget
+              </p>
             </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/"> {t("links.home")}</Link>
-            <Link href="/#about">{t("links.about")}</Link>
+            <Link className="hover:text-blue-500 hover:font-[600]" href="/">
+              {" "}
+              {t("links.home")}
+            </Link>
+            <Link className="hover:text-blue-500 hover:font-[600]" href="/#about">
+              {t("links.about")}
+            </Link>
             {/* <Link
               href="/#contact"
               className={
@@ -73,7 +75,12 @@ export default function Header() {
             >
               {t("links.contact")}
             </Link> */}
-            <Link href="/#reviews">{t("links.reviews")}</Link>
+            <Link className="hover:text-blue-500 hover:font-[600]"  href="/#reviews">
+              {t("links.reviews")}
+            </Link>
+            <Link className="hover:text-blue-500 hover:font-[600]" href="/#contacts">
+              {t("links.contacts")}
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
@@ -111,20 +118,20 @@ export default function Header() {
                 ))}
               </SelectContent>
             </Select>
-            <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6">
+            <Button onClick={() => router.push("/login")} className="bg-blue-500 hover:bg-blue-600 text-white px-6">
               {t("btn-login")}
             </Button>
-            <AnimatedThemeToggler/>
+            <AnimatedThemeToggler />
           </div>
 
           <div className="flex md:hidden items-center gap-2">
             <Button
+            onClick={() => router.push("/login")}
               size="sm"
               className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1"
             >
               {t("btn-login")}
             </Button>
-           
           </div>
         </div>
       </header>

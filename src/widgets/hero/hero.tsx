@@ -7,20 +7,22 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
+import { useRouter } from "next/navigation";
 const images = ["/family-budget.png"];
 const HeroSection = () => {
   const t = useTranslations("home");
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
+  const router = useRouter()
 
   return (
     <div>
       {" "}
-      {/* hero section */}
       <section className="py-6 mx-auto w-full">
-        <ShinyButton className="w-fit m-auto mb-4 flex bg-blue-500 text-white justify-center items-center">
-          <AnimatedGradientText colorFrom="#fff" colorTo="#3b82f6">
+        <ShinyButton className="w-fit m-auto mb-4 flex border-blue-500 text-white justify-center items-center">
+          🎉
+          <AnimatedGradientText >
             {t("hero.badge")}
           </AnimatedGradientText>
         </ShinyButton>
@@ -41,10 +43,11 @@ const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <PulsatingButton
+              onClick={() => router.push("/login")}
                 className="text-lg px-8 text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
                 pulseColor="#bfdbfe"
               >
-                <p className="flex items-center">
+                <p  className="flex items-center">
                   {t("hero.cta")}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </p>
