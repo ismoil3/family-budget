@@ -108,8 +108,8 @@ export default function IncomesTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.description}>
+          {invoices.map((invoice, index) => (
+            <TableRow key={index}>
               <TableCell className="font-medium ">{invoice.user}</TableCell>
               <TableCell className="text-right">{invoice.category}</TableCell>
               <TableCell className="font-medium text-right">
@@ -117,7 +117,7 @@ export default function IncomesTable() {
               </TableCell>
               <TableCell className="text-right">{invoice.amount}</TableCell>
               <TableCell className="text-right">{invoice.date}</TableCell>
-             <TableCell> 
+             <TableCell>
                   <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
                     <Edit />
                   </Button>

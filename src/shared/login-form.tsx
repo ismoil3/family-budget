@@ -11,10 +11,27 @@ import $api from "./api/axiosConfign";
 import { toast } from "sonner";
 export async function handleLogin(user: { login: string; password: string }) {
   try {
-    const response: { access_token: string } = await $api.post("/login", user, {
-      withCredentials: true,
-    });
-    localStorage.setItem("access_token", response.access_token);
+    const response = await $api.post<{
+      access_token: string;
+      access_expire: string;
+      refresh_token: string;
+      refresh_expire: string;
+      user_id: string;
+    }>("/login", user, { withCredentials: true });
+
+    const {
+      access_token,
+      access_expire,
+      refresh_token,
+      refresh_expire,
+      user_id,
+    } = response.data;
+
+    localStorage.setItem("access_token", access_token);
+    localStorage.setItem("access_expire", access_expire);
+    localStorage.setItem("refresh_token", refresh_token);
+    localStorage.setItem("refresh_expire", refresh_expire);
+    localStorage.setItem("user_id", user_id);
   } catch (error) {
     console.error(error);
     toast.error(
@@ -23,11 +40,12 @@ export async function handleLogin(user: { login: string; password: string }) {
     );
   }
 }
+
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-   const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   async function handleSubmitLogin(event: React.FormEvent) {
     event.preventDefault();
     setIsPending(true);

@@ -432,7 +432,7 @@ export function DataTable({
           <TabsTrigger value="key-personnel">
            Цели <Badge variant="secondary">2</Badge>
           </TabsTrigger>
-         
+
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
@@ -801,6 +801,6 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
-    </  >
-  )
+    </Drawer>
+  );
 }

@@ -25,8 +25,8 @@ export function RegisterForm({
     const family_name = form.family_name.value;
     const name = form.name1.value;
     const password = form.password.value;
+    const phone = form.phone.value;
 
-    console.log({ name, surname, login, family_name, password });
     try {
       const response = await $api.post("/register", {
         name,
@@ -34,6 +34,7 @@ export function RegisterForm({
         login,
         family_name,
         password,
+        phone
       });
       console.log(response);
       await handleLogin({ login, password });
@@ -80,6 +81,17 @@ export function RegisterForm({
                   required
                 />
               </div>
+              <div className="grid gap-3">
+                <Label htmlFor="phone">Phone</Label>
+                <Input
+                  id="phone"
+                  type="number"
+                  name="phone"
+                  placeholder="phone"
+                  required
+                />
+              </div>
+
               <div className="grid gap-3">
                 <Label htmlFor="login">Login</Label>
                 <Input
