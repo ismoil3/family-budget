@@ -3,7 +3,8 @@
     "links": {
       "home": "Home",
       "about": "About us",
-      "contact": "Contact"
+      "contact": "Contact",
+      "reviews": "Reviews"
     },
     "btn-login": "Log in"
   },

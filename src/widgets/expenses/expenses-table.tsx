@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
 import {
   Table,
   TableBody,
@@ -11,62 +10,63 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/ui/table";
-import AddTargetModal from "@/widgets/targets/addTargetModal";
-import EditTargetModal from "@/widgets/targets/editTargetModal";
-import { Edit, SearchIcon, Trash } from "lucide-react";
+import AddExpensesModal from "./addModal";
 import { useState } from "react";
+import EditItemModal from "../incomes/editModal";
+import { Edit, Trash } from "lucide-react";
+import EditExpensensModal from "./editExpensensModal";
 const invoices = [
   {
     description: "description",
     amount: "$250.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$150.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$350.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$450.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$550.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$200.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
   {
     description: "description",
     amount: "$300.00",
     date: "	2024-01-15	",
     user: "Ахметов Эраҷ",
-    progress: "$100.00",
+    category: "Зарплата",
   },
 ];
-export default function TargetsPage() {
+export default function ExpensesTable() {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
 
@@ -81,47 +81,42 @@ export default function TargetsPage() {
   }
   return (
     <div className="w-full max-w-4xl    ">
-      <div className="flex justify-end gap-4">
-        <div className="relative w-full max-w-sm">
-          <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input type="search" placeholder="Search..." className="pl-10" />
-        </div>
-        <Button onClick={() => setOpen(true)}>Создать цель</Button>
-        <AddTargetModal
+      <div className="flex justify-end">
+        <Button onClick={() => setOpen(true)}>Создать расход</Button>
+        <AddExpensesModal
           open={open}
           onOpenChange={setOpen}
           onSubmit={handleCreate}
         />
-        <EditTargetModal
-          open={open2}
-          onOpenChange={setOpen2}
-          onSubmit={handleUpdate}
-          defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
-        />
       </div>
+       <EditExpensensModal
+              open={open2}
+              onOpenChange={setOpen2}
+              onSubmit={handleUpdate}
+              defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
+            />
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead className="">Пользователь</TableHead>
+            <TableHead className="text-right">Категория</TableHead>
             <TableHead className="text-right">Описание</TableHead>
             <TableHead className="text-right">Сумма</TableHead>
-            <TableHead className="text-right">Прогресс</TableHead>
             <TableHead className="text-right">Дата</TableHead>
-            <TableHead>Действия</TableHead>
+                  <TableHead>Действия</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.description}>
               <TableCell className="font-medium ">{invoice.user}</TableCell>
+              <TableCell className="text-right">{invoice.category}</TableCell>
               <TableCell className="font-medium text-right">
                 {invoice.description}
               </TableCell>
               <TableCell className="text-right">{invoice.amount}</TableCell>
-              <TableCell className="text-right">{invoice.progress}</TableCell>
               <TableCell className="text-right">{invoice.date}</TableCell>
-             
-                <TableCell> 
+              <TableCell> 
                   <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
                     <Edit />
                   </Button>
@@ -129,7 +124,6 @@ export default function TargetsPage() {
                     <Trash />
                   </Button>
                 </TableCell>
-   
             </TableRow>
           ))}
         </TableBody>

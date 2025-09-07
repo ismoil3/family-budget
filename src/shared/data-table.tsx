@@ -111,7 +111,7 @@ export const schema = z.object({
   header: z.string(),
   type: z.string(),
   status: z.string(),
-  target: z.string(),
+  income: z.string(),
   limit: z.string(),
   reviewer: z.string(),
 })
@@ -170,7 +170,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "header",
-    header: "Header",
+    header: "Описание",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />
     },
@@ -202,8 +202,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     ),
   },
   {
-    accessorKey: "target",
-    header: () => <div className="w-full text-right">Target</div>,
+    accessorKey: "Даход",
+    header: () => <div className="w-full text-right">Даход</div>,
     cell: ({ row }) => (
       <form
         onSubmit={(e) => {
@@ -215,13 +215,13 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           })
         }}
       >
-        <Label htmlFor={`${row.original.id}-target`} className="sr-only">
-          Target
+        <Label htmlFor={`${row.original.id}-income`} className="sr-only">
+      Доходы
         </Label>
         <Input
           className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
-          defaultValue={row.original.target}
-          id={`${row.original.id}-target`}
+          defaultValue={row.original.income}
+          id={`${row.original.id}-income`}
         />
       </form>
     ),
@@ -419,21 +419,20 @@ export function DataTable({
             <SelectValue placeholder="Select a view" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="outline">Outline</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
+            <SelectItem value="outline">Доходы</SelectItem>
+            <SelectItem value="past-performance">Расходы</SelectItem>
+            <SelectItem value="key-personnel">Цели</SelectItem>
           </SelectContent>
         </Select>
         <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-          <TabsTrigger value="outline">Outline</TabsTrigger>
+          <TabsTrigger value="outline">Доходы</TabsTrigger>
           <TabsTrigger value="past-performance">
-            Past Performance <Badge variant="secondary">3</Badge>
+            Расходы<Badge variant="secondary">3</Badge>
           </TabsTrigger>
           <TabsTrigger value="key-personnel">
-            Key Personnel <Badge variant="secondary">2</Badge>
+           Цели <Badge variant="secondary">2</Badge>
           </TabsTrigger>
-          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
+         
         </TabsList>
         <div className="flex items-center gap-2">
           <DropdownMenu>
@@ -770,8 +769,8 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
-                <Label htmlFor="target">Target</Label>
-                <Input id="target" defaultValue={item.target} />
+                <Label htmlFor="income">Даход</Label>
+                <Input id="income" defaultValue={item.income} />
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="limit">Limit</Label>
@@ -802,6 +801,6 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
-    </Drawer>
+    </  >
   )
 }

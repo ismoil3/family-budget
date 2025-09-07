@@ -4,9 +4,22 @@ import { PulsatingButton } from "@/shared/magicui/pulsating-button";
 import { Badge } from "@/shared/ui/badge";
 import { Card, CardContent } from "@/shared/ui/card";
 import Reviews from "@/widgets/reviews/reviews";
-import { AlignEndVerticalIcon, ArrowRight, CrosshairIcon } from "lucide-react";
+import {
+  Accessibility,
+  ArrowRight,
+  CheckCheck,
+  CrosshairIcon,
+  LucideIndentDecrease,
+  MonitorSmartphone,
+  PlaneTakeoffIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { ShinyButton } from "@/shared/magicui/shiny-button";
+import { AnimatedGradientText } from "@/shared/magicui/animated-gradient-text";
+import { MacbookScroll } from "@/shared/ui/macbook-scroll";
+import { useEffect, useState } from "react";
+import HeroSection from "@/widgets/hero/hero";
 
 const dataTeam = [
   {
@@ -64,56 +77,13 @@ interface HomePageProps {
 
 const HomePage = ({ params: { locale } }: HomePageProps) => {
   const t = useTranslations("home");
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => setIsClient(true), []);
 
   return (
     <div className="container">
-      {/* hero section */}
-      <section className="py-12 mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <Badge variant="secondary" className="w-fit">
-              {t("hero.badge")}
-            </Badge>
-
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
-                {t("hero.title")}{" "}
-                <span className="text-blue-500 dark:text-blue-400">
-                  {t("hero.titleHighlight")}
-                </span>
-              </h1>
-
-              <p className="text-lg text-muted-foreground text-pretty max-w-lg">
-                {t("hero.description")}
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <PulsatingButton
-                className="text-lg px-8 text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-                pulseColor="#bfdbfe"
-              >
-                <p className="flex items-center">
-                  {t("hero.cta")}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </p>
-              </PulsatingButton>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 lg:p-12">
-              <Image
-                src="/family-budget.png"
-                alt="Семья управляет бюджетом вместе"
-                className="w-full h-auto rounded-2xl"
-                width={500}
-                height={300}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+     <HeroSection />
 
       {/* plus section */}
       <section className="py-16 md:py-24">
@@ -327,25 +297,26 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
       </section>
 
       {/* our  platform */}
-      <section>
-        <h2 className="text-6xl text-center md:text-4xl caveat mb-4 text-foreground">
-          {t("platform.title")}
-        </h2>
-        <Image
-          width={1000}
-          height={1000}
-          src="/my-app.png"
-          className="m-auto"
-          alt="Platform"
-        />
+      <section className="w-full overflow-hidden" suppressHydrationWarning>
+        {isClient ? (
+          <MacbookScroll
+            title={
+              <p
+                className="text-6xl text-center md:text-4xl caveat mb-4 text-foreground"
+                suppressHydrationWarning
+              >
+                {t("platform.title")}
+              </p>
+            }
+            src="/my-app.png"
+            showGradient={false}
+          />
+        ) : null}
       </section>
 
       {/* feauters platform */}
       <section className="py-16 md:py-24">
         <div className="text-center mb-16">
-          <div className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium px-4 py-2 rounded-full mb-6">
-            {t("features.badge")}
-          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
             {t("features.title")}
           </h2>
@@ -356,19 +327,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           <Card className="bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800">
             <CardContent className="p-8 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <svg
-                  className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                  />
-                </svg>
+                <Accessibility className="text-blue-500" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">
                 {t("features.accessibility.title")}
@@ -396,19 +355,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
             <CardContent className="p-8 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <svg
-                  className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
+                <PlaneTakeoffIcon className="text-blue-500" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">
                 {t("features.planning.title")}
@@ -422,19 +369,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           <Card className="bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800">
             <CardContent className="p-8 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <svg
-                  className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
+                <LucideIndentDecrease className="text-blue-500" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">
                 {t("features.automation.title")}
@@ -448,7 +383,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
             <CardContent className="p-8 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <AlignEndVerticalIcon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <MonitorSmartphone className="text-blue-500" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">
                 {t("features.smartAnalytics.title")}
@@ -462,19 +397,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
           <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
             <CardContent className="p-8 text-center space-y-4">
               <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                <svg
-                  className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                  />
-                </svg>
+                <CheckCheck className="text-blue-500" />
               </div>
               <h3 className="text-lg font-semibold text-foreground">
                 {t("features.familyGoals.title")}
@@ -488,7 +411,7 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
       </section>
 
       {/* history */}
-      <section>
+      <section id="about">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
             {t("history.title")}
@@ -525,6 +448,8 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
                 width={600}
                 height={400}
                 className="w-[600px] h-[300px] rounded-2xl"
+                priority={true}
+                unoptimized={true}
               />
             </div>
           </div>
@@ -561,7 +486,10 @@ const HomePage = ({ params: { locale } }: HomePageProps) => {
             </div>
           ))}
         </div>
-        <div className="grid md:grid-cols-2 max-w-[700px] m-auto mt-10 grid-rows-1 gap-16 items-center justify-center">
+        <div
+          id="reviews"
+          className="flex flex-row max-w-[700px] m-auto mt-10  gap-16 items-center justify-center"
+        >
           {dataTeam.slice(3, 5).map((item, index) => (
             <div key={index} className="text-center m-auto space-y-4">
               <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-gray-200 dark:border-gray-700">

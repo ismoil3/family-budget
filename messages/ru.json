@@ -3,7 +3,8 @@
         "links": {
             "home": "Главная",
             "about": "О нас",
-            "contact": "Контакты"
+            "contact": "Контакты",
+            "reviews": "Отзывы"
         },
         "btn-login": "Войти"
     },

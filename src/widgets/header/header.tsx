@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui/select";
-import { Moon, Sun, Home, Info, Phone } from "lucide-react";
+import { Moon, Sun, Home, Info, Phone, Star } from "lucide-react";
 import { useTheme } from "next-themes";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,6 +18,7 @@ import Cookies from "js-cookie";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
+import { AnimatedThemeToggler } from "@/shared/magicui/animated-theme-toggler";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
@@ -26,6 +27,9 @@ export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState(locale);
   const router = useRouter();
   const pathname = usePathname();
+  if (pathname === "/login" || pathname === "/register") {
+    return null;
+  }
 
   function handleChangeSelect(locale: string) {
     Cookies.set("NEXT_LOCALE", locale);
@@ -44,52 +48,32 @@ export default function Header() {
 
   return (
     <>
-      <header className="w-full bg-background     container">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Image width={260} height={200} className="hidden md:block w-[150px] h-auto" src="/logo.png" alt="" />
-            <Image
-              className="block md:hidden w-[40px]"
-              src="/mini-logo.png"
-              alt="mini logo"
-              width={40}
-              height={40}
-
-            />
-          </div>
+      <header className="w-full bg-background  sticky top-0 z-50">
+        <div className="flex items-center container justify-between">
+          <Link href="/">
+            <div className="flex items-center gap-2">
+              <Image
+                src="/mini-logo.png"
+                alt="mini logo"
+                width={40}
+                height={40}
+              />
+              <p className="hidden caveat md:block text-2xl font-caveat-sans">FamilyBudget</p>
+            </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/"
+            <Link href="/"> {t("links.home")}</Link>
+            <Link href="/#about">{t("links.about")}</Link>
+            {/* <Link
+              href="/#contact"
               className={
-                pathname === "/"
-                  ? "text-blue-500 underline"
-                  : " hover:underline"
-              }
-            >
-              {" "}
-              {t("links.home")}
-            </Link>
-            <Link
-              href="/about"
-              className={
-                pathname === "/about"
-                  ? "text-blue-500 underline"
-                  : " hover:underline"
-              }
-            >
-              {t("links.about")}
-            </Link>
-            <Link
-              href="/contact"
-              className={
-                pathname === "/contact"
-                  ? "text-blue-500 "
-                  : " hover:underline"
+                pathname === "/#contact" ? "text-blue-500 " : " hover:underline"
               }
             >
               {t("links.contact")}
-            </Link>
+            </Link> */}
+            <Link href="/#reviews">{t("links.reviews")}</Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
@@ -120,7 +104,6 @@ export default function Header() {
                         alt="flag"
                         width={20}
                         height={20}
-
                       />
                       <span>{language.name}</span>
                     </div>
@@ -128,21 +111,10 @@ export default function Header() {
                 ))}
               </SelectContent>
             </Select>
-
             <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6">
               {t("btn-login")}
             </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="h-9 w-9"
-            >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            <AnimatedThemeToggler/>
           </div>
 
           <div className="flex md:hidden items-center gap-2">
@@ -152,16 +124,7 @@ export default function Header() {
             >
               {t("btn-login")}
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="h-9 w-9"
-            >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+           
           </div>
         </div>
       </header>
@@ -177,19 +140,27 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/about"
+            href="/#about"
             className="flex flex-col items-center gap-1 py-2 px-3 rounded-lg hover:bg-accent/50"
           >
             <Info className="h-5 w-5" />
             <span className="text-xs">{t("links.about")}</span>
           </Link>
-
+          {/*
           <Link
-            href="/contact"
+            href="/#contact"
             className="flex flex-col items-center gap-1 py-2 px-3 rounded-lg hover:bg-accent/50"
           >
             <Phone className="h-5 w-5" />
             <span className="text-xs">{t("links.contact")}</span>
+          </Link> */}
+
+          <Link
+            href="/#reviews"
+            className="flex flex-col items-center gap-1 py-2 px-3 rounded-lg hover:bg-accent/50"
+          >
+            <Star className="h-5 w-5" />
+            <span className="text-xs">{t("links.reviews")}</span>
           </Link>
 
           <div className="flex flex-col items-center gap-1">
@@ -203,7 +174,6 @@ export default function Header() {
                       alt="flag"
                       width={20}
                       height={20}
-
                     />
                     <span className="text-xs">
                       {currentLanguage?.code.toUpperCase()}

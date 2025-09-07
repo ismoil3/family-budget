@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   IconCamera,
   IconDatabase,
@@ -12,12 +12,12 @@ import {
   IconReport,
   IconSearch,
   IconSettings,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
-import { NavDocuments } from "@/shared/nav-documents"
-import { NavMain } from "@/shared/nav-main"
-import { NavSecondary } from "@/shared/nav-secondary"
-import { NavUser } from "@/shared/nav-user"
+import { NavDocuments } from "@/shared/nav-documents";
+import { NavMain } from "@/shared/nav-main";
+import { NavSecondary } from "@/shared/nav-secondary";
+import { NavUser } from "@/shared/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -26,8 +26,16 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/shared/ui/sidebar"
-import { BanknoteArrowDown, BanknoteArrowUp, LayoutDashboard, Settings, Target, Users } from "lucide-react"
+} from "@/shared/ui/sidebar";
+import {
+  BanknoteArrowDown,
+  BanknoteArrowUp,
+  LayoutDashboard,
+  Settings,
+  Target,
+  Users,
+} from "lucide-react";
+import Image from "next/image";
 
 const data = {
   user: {
@@ -52,27 +60,22 @@ const data = {
       icon: BanknoteArrowDown,
     },
     {
+      title: "Целы",
+      url: "targets",
+      icon: Target,
+    },
+    {
       title: "Моя семья",
       url: "my-family",
       icon: Users,
     },
     {
-      title: "Целы",
-      url: "targets",
-      icon: Target,
-    },
-     {
       title: "Настройки",
       url: "settings",
       icon: Settings,
     },
-  
   ],
-  
-  
-  
-
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -80,15 +83,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">FamilyBudget</span>
+            <div className="flex items-center gap-1">
+              <Image alt="logo" src={"/logo.svg"} width={32} height={32} />
+              <a href="/admin/dashboard">
+                <span className="text-2xl font-semibold caveat">
+                  FamilyBudget
+                </span>
               </a>
-            </SidebarMenuButton>
+            </div>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -99,5 +101,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

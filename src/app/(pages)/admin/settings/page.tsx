@@ -1,7 +1,10 @@
+import { ThemeSwitcher } from "@/shared/theme/theme-switcher";
+
 export default function SettingsPage() {
   return (
     <div>
-      <h1>Settings page</h1>
+      <ThemeSwitcher />
+      
     </div>
   );
 }

@@ -1,6 +1,4 @@
 "use client";
-import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
 import {
   Table,
   TableBody,
@@ -11,10 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/ui/table";
-import AddTargetModal from "@/widgets/targets/addTargetModal";
-import EditTargetModal from "@/widgets/targets/editTargetModal";
-import { Edit, SearchIcon, Trash } from "lucide-react";
+import AddTargetModal from "./addTargetModal";
 import { useState } from "react";
+import { Button } from "@/shared/ui/button";
+import { Edit, Trash } from "lucide-react";
+import EditTargetModal from "./editTargetModal";
 const invoices = [
   {
     description: "description",
@@ -66,14 +65,16 @@ const invoices = [
     progress: "$100.00",
   },
 ];
-export default function TargetsPage() {
+export default function TargetsTable() {
   const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
+
+    const [open2, setOpen2] = useState(false);
 
   async function handleCreate(values) {
     await fetch("/api/items", { method: "POST", body: JSON.stringify(values) });
   }
-  async function handleUpdate(values) {
+
+   async function handleUpdate(values) {
     await fetch("/api/items/1", {
       method: "PUT",
       body: JSON.stringify(values),
@@ -81,11 +82,7 @@ export default function TargetsPage() {
   }
   return (
     <div className="w-full max-w-4xl    ">
-      <div className="flex justify-end gap-4">
-        <div className="relative w-full max-w-sm">
-          <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input type="search" placeholder="Search..." className="pl-10" />
-        </div>
+      <div className="flex justify-end">
         <Button onClick={() => setOpen(true)}>Создать цель</Button>
         <AddTargetModal
           open={open}
@@ -93,11 +90,11 @@ export default function TargetsPage() {
           onSubmit={handleCreate}
         />
         <EditTargetModal
-          open={open2}
-          onOpenChange={setOpen2}
-          onSubmit={handleUpdate}
-          defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
-        />
+                open={open2}
+                onOpenChange={setOpen2}
+                onSubmit={handleUpdate}
+                defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
+              />
       </div>
       <Table>
         <TableHeader>
@@ -107,7 +104,7 @@ export default function TargetsPage() {
             <TableHead className="text-right">Сумма</TableHead>
             <TableHead className="text-right">Прогресс</TableHead>
             <TableHead className="text-right">Дата</TableHead>
-            <TableHead>Действия</TableHead>
+             <TableHead >Действия</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -120,8 +117,7 @@ export default function TargetsPage() {
               <TableCell className="text-right">{invoice.amount}</TableCell>
               <TableCell className="text-right">{invoice.progress}</TableCell>
               <TableCell className="text-right">{invoice.date}</TableCell>
-             
-                <TableCell> 
+             <TableCell> 
                   <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
                     <Edit />
                   </Button>
@@ -129,7 +125,6 @@ export default function TargetsPage() {
                     <Trash />
                   </Button>
                 </TableCell>
-   
             </TableRow>
           ))}
         </TableBody>
