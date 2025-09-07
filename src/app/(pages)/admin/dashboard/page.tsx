@@ -29,7 +29,7 @@ export default function DashboardPage() {
               <TabsTrigger value="expenses">Расходы</TabsTrigger>
               <TabsTrigger value="targets">Цели</TabsTrigger>
             </TabsList>
-            <TabsContent  value="incomes">
+            <TabsContent value="incomes">
               <IncomesTable />
             </TabsContent>
             <TabsContent value="expenses">

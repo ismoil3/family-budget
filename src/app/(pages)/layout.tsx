@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Caveat, Geist, Geist_Mono } from "next/font/google";
 import "@/app/styles/globals.css";
-import { NextIntlClientProvider } from "next-intl"
+import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "../providers/theme-provider";
 import { Toaster } from "@/shared/ui/sonner";
 const geistSans = Geist({
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 const caveatSans = Caveat({
   variable: "--font-caveat-sans",
-})
+});
 
 export const metadata: Metadata = {
   title: "Family budget",
@@ -32,7 +32,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${caveatSans.variable} antialiased`}
-
       >
         <NextIntlClientProvider>
           <ThemeProvider

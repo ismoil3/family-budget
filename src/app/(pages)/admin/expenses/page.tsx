@@ -80,29 +80,24 @@ export default function ExpensesPage() {
     });
   }
   return (
-      <div className="w-full max-w-4xl">
-     <div className="flex justify-end gap-4">
-             <div className="relative w-full max-w-sm">
-        <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          type="search"
-          placeholder="Search..."
-          className="pl-10"
-        />
-      </div>
+    <div className="w-full max-w-4xl">
+      <div className="flex justify-end gap-4">
+        <div className="relative w-full max-w-sm">
+          <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input type="search" placeholder="Search..." className="pl-10" />
+        </div>
         <Button onClick={() => setOpen(true)}>Создать расход</Button>
         <AddExpensesModal
           open={open}
           onOpenChange={setOpen}
           onSubmit={handleCreate}
         />
-            <EditExpensensModal
-            open={open2}
-            onOpenChange={setOpen2}
-            onSubmit={handleUpdate}
-            defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
-            />
-
+        <EditExpensensModal
+          open={open2}
+          onOpenChange={setOpen2}
+          onSubmit={handleUpdate}
+          defaultValues={{ title: "Стул", description: "Удобный", price: 1000 }}
+        />
       </div>
       <Table>
         <TableHeader>
@@ -125,14 +120,14 @@ export default function ExpensesPage() {
               <TableCell className="text-right">{invoice.amount}</TableCell>
               <TableCell className="text-right">{invoice.progress}</TableCell>
               <TableCell className="text-right">{invoice.date}</TableCell>
-             <TableCell> 
-                  <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
-                    <Edit />
-                  </Button>
-                  <Button variant={"destructive"}>
-                    <Trash />
-                  </Button>
-                </TableCell>
+              <TableCell>
+                <Button className="mr-[5px]" onClick={() => setOpen2(true)}>
+                  <Edit />
+                </Button>
+                <Button variant={"destructive"}>
+                  <Trash />
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
